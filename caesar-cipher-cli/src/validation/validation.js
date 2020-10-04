@@ -22,11 +22,11 @@ function validationOptions({ shift, action, input, output }) {
     writeErrorStream('Shift must be positive integer');
   }
 
-  if (input && !fs.existsSync(input)) {
+  if (input && !fs.existsSync(input) && !fs.accessSync(input)) {
     writeErrorStream('Input file was not found');
   }
 
-  if (output && !fs.existsSync(output)) {
+  if (output && !fs.existsSync(output) && !fs.accessSync(input)) {
     writeErrorStream('Output file was not found');
   }
 }
