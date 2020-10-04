@@ -1,0 +1,22 @@
+{
+  "name": "caesar-cipher-cli",
+  "version": "1.0.0",
+  "description": "1. Clone this repository\r 2. Go to the folder(caesar-cipher-cli\\caesar-cipher-cli)\r 3. npm install",
+  "main": "caesar-cipher.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evgenDer/caesar-cipher-cli.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evgenDer/caesar-cipher-cli/issues"
+  },
+  "homepage": "https://github.com/evgenDer/caesar-cipher-cli#readme",
+  "dependencies": {
+    "commander": "^6.1.0"
+  }
+}
