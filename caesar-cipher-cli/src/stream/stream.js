@@ -1,9 +1,9 @@
 const fs = require('fs');
-const stream = require('stream');
+const { Transform } = require('stream');
 const encrypt = require('../tools/encrypt');
 
 function transformStream({ action, shift }) {
-  class CipherTransformer extends stream.Transform {
+  class CipherTransformer extends Transform {
     _transform(data, encoding, callback) {
       const msg = data.toString('utf8');
       const shiftNumber = +shift;
@@ -27,12 +27,6 @@ function readStream(filePath) {
   return fs.createReadStream(filePath);
 }
 
-module.exports = {
-  readStream,
-  transformStream,
-  writeStream,
-};
-
 function writeStream(filePath) {
   if (!filePath) {
     return process.stdout;
@@ -40,3 +34,9 @@ function writeStream(filePath) {
 
   return fs.createWriteStream(filePath, { flags: 'a' });
 }
+
+module.exports = {
+  readStream,
+  transformStream,
+  writeStream,
+};
