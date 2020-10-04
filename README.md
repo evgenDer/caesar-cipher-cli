@@ -24,5 +24,7 @@ If this command isn't provided - a ciphred text will be printed in the terminal
 ## Usage example
 
 $ node caesar-cipher.js -a encode -s 7 -i "./input.txt" -o "./output.txt"
+
 $ node caesar-cipher.js --action encode --shift 7 --input _your-first-file.txt_ --output _your-second-file.txt_
+
 $ node caesar-cipher.js --action decode --shift 7 --input _your-first-file.txt_ --output _your-second-file.txt_
