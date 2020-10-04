@@ -5,11 +5,7 @@ function writeErrorStream(errorMsg) {
   process.exit(3);
 }
 
-function validateFile(file, mode) {
-  if (mode !== 'input' && mode !== 'output') {
-    return false;
-  }
-
+function validateFile(file, mode = 'output') {
   if (fs.existsSync(file)) {
     try {
       fs.accessSync(
@@ -47,7 +43,7 @@ function validationOptions({ shift, action, input, output }) {
     writeErrorStream('Input file was not found or not accessible');
   }
 
-  if (output && !validateFile(output, 'output')) {
+  if (output && !validateFile(output)) {
     writeErrorStream('Output file was not found or not accessible');
   }
 }
