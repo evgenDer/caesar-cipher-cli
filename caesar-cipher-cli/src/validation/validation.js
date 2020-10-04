@@ -5,6 +5,27 @@ function writeErrorStream(errorMsg) {
   process.exit(3);
 }
 
+function validateFile(file, mode) {
+  if (mode !== 'input' && mode !== 'output') {
+    return false;
+  }
+
+  if (fs.existsSync(file)) {
+    try {
+      fs.accessSync(
+        file,
+        mode === 'input' ? fs.constants.W_OK : fs.constants.R_OK
+      );
+    } catch (err) {
+      return false;
+    }
+  } else {
+    return false;
+  }
+
+  return true;
+}
+
 function validationOptions({ shift, action, input, output }) {
   if (!action) {
     writeErrorStream('Action is required');
@@ -22,12 +43,12 @@ function validationOptions({ shift, action, input, output }) {
     writeErrorStream('Shift must be positive integer');
   }
 
-  if (input && !fs.existsSync(input) && !fs.accessSync(input)) {
-    writeErrorStream('Input file was not found');
+  if (input && !validateFile(input, 'input')) {
+    writeErrorStream('Input file was not found or not accessible');
   }
 
-  if (output && !fs.existsSync(output) && !fs.accessSync(input)) {
-    writeErrorStream('Output file was not found');
+  if (output && !validateFile(output, 'output')) {
+    writeErrorStream('Output file was not found or not accessible');
   }
 }
 
